@@ -60,9 +60,11 @@ if($mybb->input['action'] == "view") {
 	$ticket['uid'] = $ticket['creator'];
 	$ticket['creator'] = build_profile_link($user['username'], $ticket['creator']);
 	$ticket['date'] = my_date($mybb->settings['dateformat'], $ticket['date'])." ".my_date($mybb->settings['timeformat'], $ticket['date']);
-	$lockimg = "";
+	$lockimg = $do_answer = "";
 	if($ticket['closed'] == 1)
 	    $lockimg = "<img src=\"images/lock.gif\" alt=\"[Lock]\" /> ";
+	else
+	   	eval("\$do_answer = \"".$templates->get("tickets_answer_form")."\";");		
 	
 	if($is_master && $ticket['uid'] != $mybb->user['uid'])
 		add_breadcrumb($lang->tickets_admin, "tickets.php?action=master");

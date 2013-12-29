@@ -139,6 +139,28 @@ function tickets_install()
     $db->insert_query("templates", $templatearray);
 
 	$templatearray = array(
+	"title" => "tickets_answer_form",
+	"template" => "<br />
+<form action=\"tickets.php\" method=\"post\">
+<input type=\"hidden\" name=\"action\" value=\"do_answer\" />
+<input type=\"hidden\" name=\"my_post_key\" value=\"{\$mybb->post_code}\" />
+<input type=\"hidden\" name=\"id\" value=\"{\$id}\" />
+<table border=\"0\" cellspacing=\"{\$theme[\'borderwidth\']}\" cellpadding=\"{\$theme[\'tablespace\']}\" class=\"tborder\">
+<tr>
+<td class=\"thead\">{\$lang->ticket_answers}</td>
+</tr>
+<tr>
+<td class=\"trow1\"><textarea name=\"answer\" cols=175 rows=10></textarea></td>
+</tr>
+<tr>
+<td class=\"trow1\" style=\"text-align: center;\"><input type=\"submit\" name=\"submit\" value=\"{\$lang->ticket_answers}\" /><input type=\"submit\" name=\"submit\" value=\"{\$lang->ticket_close}\" /></td>
+</table>
+</form>",
+    "sid" => -2
+    );
+    $db->insert_query("templates", $templatearray);
+
+	$templatearray = array(
 	"title" => "tickets_master",
 	"template" => "<html>
 <head>
@@ -172,7 +194,7 @@ function tickets_install()
 	$templatearray = array(
 	"title" => "tickets_master_table",
 	"template" => "<tr>
-	<td class=\"trow1\"><a href=\"tickets.php?action=view&view={\$ticket[\'id\']}\">{\$ticket[\'subject\']}</a></td>
+	<td class=\"trow1\"><a href=\"tickets.php?action=view&view={\$ticket[\'id\']}\">{\$lockimg}{\$ticket[\'subject\']}</a></td>
 	<td class=\"trow1\">{\$ticket[\'date\']}</td>
 	<td class=\"trow1\">{\$ticket[\'creator\']}</td>
 	<td class=\"trow1\" style=\"text-align:center;\">{\$ticket[\'answers\']}</td>
@@ -241,22 +263,7 @@ function tickets_install()
 	{\$answers}
 </table>
 
-<br />
-<form action=\"tickets.php\" method=\"post\">
-<input type=\"hidden\" name=\"action\" value=\"do_answer\" />
-<input type=\"hidden\" name=\"my_post_key\" value=\"{\$mybb->post_code}\" />
-<input type=\"hidden\" name=\"id\" value=\"{\$id}\" />
-<table border=\"0\" cellspacing=\"{\$theme[\'borderwidth\']}\" cellpadding=\"{\$theme[\'tablespace\']}\" class=\"tborder\">
-<tr>
-<td class=\"thead\">{\$lang->ticket_answers}</td>
-</tr>
-<tr>
-<td class=\"trow1\"><textarea name=\"answer\" cols=175 rows=10></textarea></td>
-</tr>
-<tr>
-<td class=\"trow1\" style=\"text-align: center;\"><input type=\"submit\" name=\"submit\" value=\"{\$lang->ticket_answers}\" /><input type=\"submit\" name=\"submit\" value=\"{\$lang->ticket_close}\" /></td>
-</table>
-</form>
+{\$do_answer}
 
 {\$footer}
 </body>
