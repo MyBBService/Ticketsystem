@@ -11,9 +11,9 @@ $l['ticket_title'] = "Titel";
 $l['ticket_created_at'] = "Erstellt";
 $l['ticket_answers'] = "Anworten";
 
-$l['tickets_show_closed'] = "Zeige auch geschloßene Tickets";
+$l['tickets_show_closed'] = "Zeige auch geschlossene Tickets";
 
-$l['ticket_closed'] = "Ticket erfolgreich geschloßen";
+$l['ticket_closed'] = "Ticket erfolgreich geschlossen";
 $l['ticket_answered'] = "Antwort erfolgreich gespeichert";
 
 $l['ticket_no_subject'] = "Keinen Titel angegeben";
