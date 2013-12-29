@@ -11,7 +11,7 @@ function tickets_info()
 {
 	return array(
 		"name"			=> "Ticketsystem",
-		"description"	=> "F&uuml;gt deinem Forum ein simples Ticketsystem hinzu",
+		"description"	=> "Fügt deinem Forum ein simples Ticketsystem hinzu",
 		"website"		=> "http://mybbservice.de",
 		"author"		=> "MyBBService",
 		"authorsite"	=> "http://mybbservice.de",
@@ -65,21 +65,21 @@ function tickets_install()
 
 <table border=\"0\" cellspacing=\"{\$theme[\'borderwidth\']}\" cellpadding=\"{\$theme[\'tablespace\']}\" class=\"tborder\">
 	<tr>
-		<td class=\"thead\" colspan={\$colspan}>Offene Tickets</td>
-		<td class=\"thead\" style=\"text-align: right;\"><a href=\"tickets.php?closed=1\">Zeige auch geschloßene Tickets</a></td>
+		<td class=\"thead\" colspan={\$colspan}>{\$lang->tickets}</td>
+		<td class=\"thead\" style=\"text-align: right;\"><a href=\"tickets.php?closed=1\">{\$lang->tickets_show_closed}</a></td>
 		{\$masterlink}
 	</tr>
 	<tr>
-		<td class=\"tcat\" width=\"40%\">Titel</td>
-		<td class=\"tcat\" width=\"40%\">Erstellt</td>
-		<td class=\"tcat\" width=\"20%\">Anworten</td>
+		<td class=\"tcat\" width=\"40%\">{\$lang->ticket_title}</td>
+		<td class=\"tcat\" width=\"40%\">{\$lang->ticket_created_at}</td>
+		<td class=\"tcat\" width=\"20%\">{\$lang->ticket_answers}</td>
 	</tr>
 	{\$tickets}
 </table>
 
 <br />
 <div style=\"text-align:center;\">
-	<a href=\"tickets.php?action=add\"><input type=\"button\" value=\"Neues Ticket erstellen\" ></a>
+	<a href=\"tickets.php?action=add\"><input type=\"button\" value=\"{\$lang->ticket_new}\" ></a>
 </div>
 
 {\$footer}
@@ -109,22 +109,22 @@ function tickets_install()
                                 <table border=\"0\" cellspacing=\"{\$theme[\'borderwidth\']}\" cellpadding=\"{\$theme[\'tablespace\']}\" class=\"tborder\">
                                         <tr>
                                                 <td class=\"thead\" align=\"center\" colspan=\"2\">
-                                                        <strong>Neues Ticket</strong>
+                                                        <strong>{\$lang->ticket_new}</strong>
                                                 </td>
                                         </tr>
 
 										<tr>
-											<td class=\"trow1\">Titel:</td>
-											<td class=\"trow1\"><input type=\"text\" name=\"subject\" value=\"{\$subject}\" \></td>
+											<td class=\"trow1\">{\$lang->ticket_title}:</td>
+											<td class=\"trow1\"><input type=\"text\" name=\"subject\" value=\"{\$subject}\" ></td>
 										</tr>
 										<tr>
-											<td class=\"trow2\">Ticket:</td>
+											<td class=\"trow2\">{\$lang->ticket}:</td>
 											<td class=\"trow2\"><textarea cols=\"50\" rows=\"10\" name=\"ticket\">{\$ticket}</textarea></td>
 										</tr>
                                         
                                         <tr>
                                                 <td class=\"trow1\"></td>
-                                                <td class=\"trow1\"><input type=\"submit\" value=\"Ticket erstellen\" /></td>
+                                                <td class=\"trow1\"><input type=\"submit\" value=\"{\$lang->ticket_create}\" /></td>
                                         </tr>
                                         </form>
                                 </table>
@@ -150,14 +150,14 @@ function tickets_install()
 
 <table border=\"0\" cellspacing=\"{\$theme[\'borderwidth\']}\" cellpadding=\"{\$theme[\'tablespace\']}\" class=\"tborder\">
 	<tr>
-		<td class=\"thead\" colspan=2>Offene Tickets</td>
-		<td class=\"thead\" colspan=2 style=\"text-align: right;\"><a href=\"tickets.php?action=master&closed=1\">Zeige auch geschloßene Tickets</a></td>
+		<td class=\"thead\" colspan=2>{\$lang->tickets}</td>
+		<td class=\"thead\" colspan=2 style=\"text-align: right;\"><a href=\"tickets.php?action=master&closed=1\">{\$lang->tickets_show_closed}</a></td>
 	</tr>
 	<tr>
-		<td class=\"tcat\" width=\"40%\">Titel</td>
-		<td class=\"tcat\" width=\"20%\">Erstellt</td>
-		<td class=\"tcat\" width=\"30%\">Von</td>
-		<td class=\"tcat\" width=\"10%\">Anworten</td>
+		<td class=\"tcat\" width=\"40%\">{\$lang->ticket_title}</td>
+		<td class=\"tcat\" width=\"20%\">{\$lang->ticket_created_at}</td>
+		<td class=\"tcat\" width=\"30%\">{\$lang->by}</td>
+		<td class=\"tcat\" width=\"10%\">{\$lang->ticket_answers}</td>
 	</tr>
 	{\$tickets}
 </table>
@@ -184,7 +184,7 @@ function tickets_install()
 	$templatearray = array(
 	"title" => "tickets_master_table_nothing",
 	"template" => "<tr>
-	<td class=\"trow1\" colspan=4 style=\"text-align:center;\">Es gibt keine offenen Tickets</td>
+	<td class=\"trow1\" colspan=4 style=\"text-align:center;\">{\$lang->tickets_nothing}</td>
 </tr>",
     "sid" => -2
     );
@@ -192,7 +192,7 @@ function tickets_install()
 
 	$templatearray = array(
 	"title" => "tickets_masterlink",
-	"template" => "<td class=\"thead\" style=\"text-align:right;\"><a href=\"tickets.php?action=master\">Tickets beantworten</a></td>",
+	"template" => "<td class=\"thead\" style=\"text-align:right;\"><a href=\"tickets.php?action=master\">{\$lang->tickets_answer}</a></td>",
     "sid" => -2
     );
     $db->insert_query("templates", $templatearray);
@@ -200,7 +200,7 @@ function tickets_install()
 	$templatearray = array(
 	"title" => "tickets_table",
 	"template" => "<tr>
-	<td class=\"trow1\"><a href=\"tickets.php?action=view&view={\$ticket[\'id\']}\">{\$ticket[\'subject\']}</a></td>
+	<td class=\"trow1\"><a href=\"tickets.php?action=view&view={\$ticket[\'id\']}\">{\$lockimg}{\$ticket[\'subject\']}</a></td>
 	<td class=\"trow1\">{\$ticket[\'date\']}</td>
 	<td class=\"trow1\" style=\"text-align:center;\">{\$ticket[\'answers\']}</td>
 </tr>",
@@ -211,7 +211,7 @@ function tickets_install()
 	$templatearray = array(
 	"title" => "tickets_table_nothing",
 	"template" => "<tr>
-	<td class=\"trow1\" colspan=3 style=\"text-align:center;\">Du hast keine offenen Tickets</td>
+	<td class=\"trow1\" colspan=3 style=\"text-align:center;\">{\$lang->tickets_nothing}</td>
 </tr>",
     "sid" => -2
     );
@@ -229,7 +229,7 @@ function tickets_install()
 
 <table border=\"0\" cellspacing=\"{\$theme[\'borderwidth\']}\" cellpadding=\"{\$theme[\'tablespace\']}\" class=\"tborder\">
 	<tr>
-		<td class=\"thead\" colspan=2>Ticket: {\$ticket[\'subject\']}</td>
+		<td class=\"thead\" colspan=2>{\$lockimg}{\$lang->ticket}: {\$ticket[\'subject\']}</td>
 	</tr>
 	<tr>
 		<td class=\"tcat\">{\$ticket[\'creator\']}</td>
@@ -248,13 +248,13 @@ function tickets_install()
 <input type=\"hidden\" name=\"id\" value=\"{\$id}\" />
 <table border=\"0\" cellspacing=\"{\$theme[\'borderwidth\']}\" cellpadding=\"{\$theme[\'tablespace\']}\" class=\"tborder\">
 <tr>
-<td class=\"thead\">Antworten</td>
+<td class=\"thead\">{\$lang->ticket_answers}</td>
 </tr>
 <tr>
 <td class=\"trow1\"><textarea name=\"answer\" cols=175 rows=10></textarea></td>
 </tr>
 <tr>
-<td class=\"trow1\" style=\"text-align: center;\"><input type=\"submit\" name=\"submit\" value=\"Antworten\" /><input type=\"submit\" name=\"submit\" value=\"Schliessen\" /></td>
+<td class=\"trow1\" style=\"text-align: center;\"><input type=\"submit\" name=\"submit\" value=\"{\$lang->ticket_answers}\" /><input type=\"submit\" name=\"submit\" value=\"{\$lang->ticket_close}\" /></td>
 </table>
 </form>
 
@@ -272,7 +272,7 @@ function tickets_install()
 		<td class=\"tcat\">{\$answer[\'date\']}</td>
 	</tr>
 <tr>
-<td class=\"trow1\" colspan=2>{\$answer[\'answer\']}</td>
+	<td class=\"trow1\" colspan=2>{\$answer[\'answer\']}</td>
 </tr>",
     "sid" => -2
     );
