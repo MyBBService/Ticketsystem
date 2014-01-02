@@ -18,7 +18,7 @@ function tickets_info()
 		"version"		=> "1.0",
 		"guid" 			=> "",
 		"compatibility" => "*",
-//		"dlcid"			=> "35"
+		"dlcid"			=> "35"
 	);
 }
 
