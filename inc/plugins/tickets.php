@@ -15,7 +15,7 @@ function tickets_info()
 		"website"		=> "http://mybbservice.de",
 		"author"		=> "MyBBService",
 		"authorsite"	=> "http://mybbservice.de",
-		"version"		=> "1.0",
+		"version"		=> "1.0.1",
 		"guid" 			=> "",
 		"compatibility" => "*",
 		"dlcid"			=> "35"
@@ -29,33 +29,33 @@ function tickets_install()
 
 	$col = $db->build_create_table_collation();
 	$db->query("CREATE TABLE `".TABLE_PREFIX."tickets` (
-	                        `id`		int(11)		NOT NULL AUTO_INCREMENT,
-	                        `subject`	varchar(30)	NOT NULL,
-	                        `ticket`	text		NOT NULL,
-	                        `creator`	int(11)		NOT NULL,
-	                        `date`		bigint(30)	NOT NULL,
-	                        `closed`	bigint(30)	NOT NULL DEFAULT '0',
+		`id`		int(11)		NOT NULL AUTO_INCREMENT,
+		`subject`	varchar(30)	NOT NULL,
+		`ticket`	text		NOT NULL,
+		`creator`	int(11)		NOT NULL,
+		`date`		bigint(30)	NOT NULL,
+		`closed`	bigint(30)	NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id`) ) ENGINE=MyISAM {$col}");
 
-    $db->query("CREATE TABLE `".TABLE_PREFIX."tickets_answers` (
-                            `id`		int(11)		NOT NULL AUTO_INCREMENT,
-                            `uid`		int(11)		NOT NULL,
-                            `ticket`	int(11)		NOT NULL,
-                            `answer`	text		NOT NULL,
-                            `date`		bigint(30)	NOT NULL,
-    PRIMARY KEY (`id`) ) ENGINE=MyISAM {$col}");
+	$db->query("CREATE TABLE `".TABLE_PREFIX."tickets_answers` (
+		`id`		int(11)		NOT NULL AUTO_INCREMENT,
+		`uid`		int(11)		NOT NULL,
+		`ticket`	int(11)		NOT NULL,
+		`answer`	text		NOT NULL,
+	`date`		bigint(30)	NOT NULL,
+	PRIMARY KEY (`id`) ) ENGINE=MyISAM {$col}");
 
-    $templateset = array(
-        "prefix" => "tickets",
-        "title" => "Ticketsystem",
+	$templateset = array(
+		"prefix" => "tickets",
+		"title" => "Ticketsystem",
 	);
-    $db->insert_query("templategroups", $templateset);
+	$db->insert_query("templategroups", $templateset);
 
 
 	//Templates
 	$templatearray = array(
-	"title" => "tickets",
-	"template" => "<html>
+		"title" => "tickets",
+		"template" => "<html>
 <head>
 <title>{\$mybb->settings[\'bbname\']}</title>
 {\$headerinclude}
@@ -85,62 +85,62 @@ function tickets_install()
 {\$footer}
 </body>
 </html>",
-    "sid" => -2
-    );
-    $db->insert_query("templates", $templatearray);
+		"sid" => -2
+	);
+	$db->insert_query("templates", $templatearray);
 
 	$templatearray = array(
-	"title" => "tickets_add",
-	"template" => "<html>
+		"title" => "tickets_add",
+		"template" => "<html>
 <head>
-        <title>{\$mybb->settings[\'bbname\']}</title>
-        {\$headerinclude}
+	<title>{\$mybb->settings[\'bbname\']}</title>
+	{\$headerinclude}
 </head>
 <body>
-        {\$header}
-        <table width=\"100%\" border=\"0\" align=\"center\">
-                <tr>
-                        <td valign=\"top\">
-                                {\$errors}
-                                <form action=\"tickets.php\" method=\"post\">
-                                <input type=\"hidden\" name=\"action\" value=\"do_add\" />
-                                <input type=\"hidden\" name=\"my_post_key\" value=\"{\$mybb->post_code}\" />
+	{\$header}
+	<table width=\"100%\" border=\"0\" align=\"center\">
+		<tr>
+			<td valign=\"top\">
+				{\$errors}
+				<form action=\"tickets.php\" method=\"post\">
+					<input type=\"hidden\" name=\"action\" value=\"do_add\" />
+					<input type=\"hidden\" name=\"my_post_key\" value=\"{\$mybb->post_code}\" />
 
-                                <table border=\"0\" cellspacing=\"{\$theme[\'borderwidth\']}\" cellpadding=\"{\$theme[\'tablespace\']}\" class=\"tborder\">
-                                        <tr>
-                                                <td class=\"thead\" align=\"center\" colspan=\"2\">
-                                                        <strong>{\$lang->ticket_new}</strong>
-                                                </td>
-                                        </tr>
+					<table border=\"0\" cellspacing=\"{\$theme[\'borderwidth\']}\" cellpadding=\"{\$theme[\'tablespace\']}\" class=\"tborder\">
+						<tr>
+							<td class=\"thead\" align=\"center\" colspan=\"2\">
+								<strong>{\$lang->ticket_new}</strong>
+							</td>
+						</tr>
 
-										<tr>
-											<td class=\"trow1\">{\$lang->ticket_title}:</td>
-											<td class=\"trow1\"><input type=\"text\" name=\"subject\" value=\"{\$subject}\" ></td>
-										</tr>
-										<tr>
-											<td class=\"trow2\">{\$lang->ticket}:</td>
-											<td class=\"trow2\"><textarea cols=\"50\" rows=\"10\" name=\"ticket\">{\$ticket}</textarea></td>
-										</tr>
-                                        
-                                        <tr>
-                                                <td class=\"trow1\"></td>
-                                                <td class=\"trow1\"><input type=\"submit\" value=\"{\$lang->ticket_create}\" /></td>
-                                        </tr>
-                                        </form>
-                                </table>
-                        </td>
-                </tr>
-        </table>
-        {\$footer}
+						<tr>
+							<td class=\"trow1\">{\$lang->ticket_title}:</td>
+							<td class=\"trow1\"><input type=\"text\" name=\"subject\" value=\"{\$subject}\" ></td>
+						</tr>
+						<tr>
+							<td class=\"trow2\">{\$lang->ticket}:</td>
+							<td class=\"trow2\"><textarea cols=\"50\" rows=\"10\" name=\"ticket\">{\$ticket}</textarea></td>
+						</tr>
+
+						<tr>
+							<td class=\"trow1\"></td>
+							<td class=\"trow1\"><input type=\"submit\" value=\"{\$lang->ticket_create}\" /></td>
+						</tr>
+					</table>
+				</form>
+			</td>
+		</tr>
+	</table>
+	{\$footer}
 </body>
 </html>",
-    "sid" => -2
-    );
-    $db->insert_query("templates", $templatearray);
+		"sid" => -2
+	);
+	$db->insert_query("templates", $templatearray);
 
 	$templatearray = array(
-	"title" => "tickets_answer_form",
-	"template" => "<br />
+		"title" => "tickets_answer_form",
+		"template" => "<br />
 <form action=\"tickets.php\" method=\"post\">
 <input type=\"hidden\" name=\"action\" value=\"do_answer\" />
 <input type=\"hidden\" name=\"my_post_key\" value=\"{\$mybb->post_code}\" />
@@ -156,13 +156,13 @@ function tickets_install()
 <td class=\"trow1\" style=\"text-align: center;\"><input type=\"submit\" name=\"submit\" value=\"{\$lang->ticket_answers}\" /><input type=\"submit\" name=\"submit\" value=\"{\$lang->ticket_close}\" /></td>
 </table>
 </form>",
-    "sid" => -2
-    );
-    $db->insert_query("templates", $templatearray);
+		"sid" => -2
+	);
+	$db->insert_query("templates", $templatearray);
 
 	$templatearray = array(
-	"title" => "tickets_master",
-	"template" => "<html>
+		"title" => "tickets_master",
+		"template" => "<html>
 <head>
 <title>{\$mybb->settings[\'bbname\']}</title>
 {\$headerinclude}
@@ -187,61 +187,61 @@ function tickets_install()
 {\$footer}
 </body>
 </html>",
-    "sid" => -2
-    );
-    $db->insert_query("templates", $templatearray);
+		"sid" => -2
+	);
+	$db->insert_query("templates", $templatearray);
 
 	$templatearray = array(
-	"title" => "tickets_master_table",
-	"template" => "<tr>
+		"title" => "tickets_master_table",
+		"template" => "<tr>
 	<td class=\"trow1\"><a href=\"tickets.php?action=view&view={\$ticket[\'id\']}\">{\$lockimg}{\$ticket[\'subject\']}</a></td>
 	<td class=\"trow1\">{\$ticket[\'date\']}</td>
 	<td class=\"trow1\">{\$ticket[\'creator\']}</td>
 	<td class=\"trow1\" style=\"text-align:center;\">{\$ticket[\'answers\']}</td>
 </tr>",
-    "sid" => -2
-    );
-    $db->insert_query("templates", $templatearray);
+		"sid" => -2
+	);
+	$db->insert_query("templates", $templatearray);
 
 	$templatearray = array(
-	"title" => "tickets_master_table_nothing",
-	"template" => "<tr>
+		"title" => "tickets_master_table_nothing",
+		"template" => "<tr>
 	<td class=\"trow1\" colspan=4 style=\"text-align:center;\">{\$lang->tickets_nothing}</td>
 </tr>",
-    "sid" => -2
-    );
-    $db->insert_query("templates", $templatearray);
+		"sid" => -2
+	);
+	$db->insert_query("templates", $templatearray);
 
 	$templatearray = array(
-	"title" => "tickets_masterlink",
-	"template" => "<td class=\"thead\" style=\"text-align:right;\"><a href=\"tickets.php?action=master\">{\$lang->tickets_answer}</a></td>",
-    "sid" => -2
-    );
-    $db->insert_query("templates", $templatearray);
-	
+		"title" => "tickets_masterlink",
+		"template" => "<td class=\"thead\" style=\"text-align:right;\"><a href=\"tickets.php?action=master\">{\$lang->tickets_answer}</a></td>",
+		"sid" => -2
+	);
+	$db->insert_query("templates", $templatearray);
+
 	$templatearray = array(
-	"title" => "tickets_table",
-	"template" => "<tr>
+		"title" => "tickets_table",
+		"template" => "<tr>
 	<td class=\"trow1\"><a href=\"tickets.php?action=view&view={\$ticket[\'id\']}\">{\$lockimg}{\$ticket[\'subject\']}</a></td>
 	<td class=\"trow1\">{\$ticket[\'date\']}</td>
 	<td class=\"trow1\" style=\"text-align:center;\">{\$ticket[\'answers\']}</td>
 </tr>",
-    "sid" => -2
-    );
-    $db->insert_query("templates", $templatearray);
+		"sid" => -2
+	);
+	$db->insert_query("templates", $templatearray);
 
 	$templatearray = array(
-	"title" => "tickets_table_nothing",
-	"template" => "<tr>
+		"title" => "tickets_table_nothing",
+		"template" => "<tr>
 	<td class=\"trow1\" colspan=3 style=\"text-align:center;\">{\$lang->tickets_nothing}</td>
 </tr>",
-    "sid" => -2
-    );
-    $db->insert_query("templates", $templatearray);
+		"sid" => -2
+	);
+	$db->insert_query("templates", $templatearray);
 
 	$templatearray = array(
-	"title" => "tickets_view",
-	"template" => "<html>
+		"title" => "tickets_view",
+		"template" => "<html>
 <head>
 <title>{\$mybb->settings[\'bbname\']}</title>
 {\$headerinclude}
@@ -268,44 +268,44 @@ function tickets_install()
 {\$footer}
 </body>
 </html>",
-    "sid" => -2
-    );
-    $db->insert_query("templates", $templatearray);
-	
+		"sid" => -2
+	);
+	$db->insert_query("templates", $templatearray);
+
 	$templatearray = array(
-	"title" => "tickets_view_answers",
-	"template" => "<tr>
+		"title" => "tickets_view_answers",
+		"template" => "<tr>
 		<td class=\"tcat\">{\$answer[\'creator\']}</td>
 		<td class=\"tcat\">{\$answer[\'date\']}</td>
 	</tr>
 <tr>
 	<td class=\"trow1\" colspan=2>{\$answer[\'answer\']}</td>
 </tr>",
-    "sid" => -2
-    );
-    $db->insert_query("templates", $templatearray);
+		"sid" => -2
+	);
+	$db->insert_query("templates", $templatearray);
 
 	//Einstellungs Gruppe
 	$settings_group = array(
-        "title"          => $lang->setting_group_tickets,
-        "name"           => "tickets",
-        "description"    => $lang->setting_group_tickets_desc,
-        "disporder"      => "40",
-        "isdefault"      => "0",
-    );
-    $gid = $db->insert_query("settinggroups", $settings_group);
+		"title"			=> $lang->setting_group_tickets,
+		"name"			=> "tickets",
+		"description"	=> $lang->setting_group_tickets_desc,
+		"disporder"		=> "40",
+		"isdefault"		=> "0",
+	);
+	$gid = $db->insert_query("settinggroups", $settings_group);
 
 
 	//Einstellungen
 	$setting = array(
-        "name"           => "tickets_usergroups",
-        "title"          => $lang->setting_tickets_usergroups,
-        "description"    => $lang->setting_tickets_usergroups_desc,
-        "optionscode"    => "text",
-        "value"          => '3,4',
-        "disporder"      => '1',
-        "gid"            => (int)$gid,
-    );
+		"name"			=> "tickets_usergroups",
+		"title"			=> $lang->setting_tickets_usergroups,
+		"description"	=> $lang->setting_tickets_usergroups_desc,
+		"optionscode"	=> "text",
+		"value"			=> '3,4',
+		"disporder"		=> '1',
+		"gid"			=> (int)$gid,
+	);
 	$db->insert_query("settings", $setting);
 
 	rebuild_settings();
@@ -322,15 +322,15 @@ function tickets_uninstall()
 {
 	global $db;
 
-    $db->drop_table("tickets");
-    $db->drop_table("tickets_answers");
+	$db->drop_table("tickets");
+	$db->drop_table("tickets_answers");
 
 	$query = $db->simple_select("settinggroups", "gid", "name='tickets'");
-    $gid = $db->fetch_field($query, "gid");
+	$gid = $db->fetch_field($query, "gid");
 	$db->delete_query("settinggroups", "gid='{$gid}'");
 	$db->delete_query("settings", "gid='{$gid}'");
 	rebuild_settings();
-	
+
 	$templatearray = array(
 		"tickets",
 		"tickets_add",
@@ -351,16 +351,16 @@ function tickets_activate()
 {
 	require MYBB_ROOT."inc/adminfunctions_templates.php";
 	find_replace_templatesets("header",
-		"#".preg_quote('<li><a href="{$mybb->settings[\'bburl\']}/search.php"><img src="{$theme[\'imgdir\']}/toplinks/search.gif" alt="" title="" />{$lang->toplinks_search}</a></li>')."#i",
-		'<li><a href="{$mybb->settings[\'bburl\']}/search.php"><img src="{$theme[\'imgdir\']}/toplinks/search.gif" alt="" title="" />{$lang->toplinks_search}</a></li>
-		 <li><a href="{$mybb->settings[\'bburl\']}/tickets.php"><img src="images/toplinks/tickets.gif" alt="" title="" />{$lang->toplinks_tickets}</a></li>');
+		"#".preg_quote('{$menu_portal}')."#i",
+		'<li><a href="{$mybb->settings[\'bburl\']}/tickets.php" style="background-position: 0 20px;"><img src="images/toplinks/tickets.gif" alt="" title="" />{$lang->toplinks_tickets}</a></li>
+		{$menu_portal}');
 }
 
 function tickets_deactivate()
 {
 	require MYBB_ROOT."inc/adminfunctions_templates.php";
 	find_replace_templatesets("header",
-		"#".preg_quote('<li><a href="{$mybb->settings[\'bburl\']}/tickets.php"><img src="images/toplinks/tickets.gif" alt="" title="" />{$lang->toplinks_tickets}</a></li>')."#i",
+		"#".preg_quote('<li><a href="{$mybb->settings[\'bburl\']}/tickets.php" style="background-position: 0 20px;"><img src="images/toplinks/tickets.gif" alt="" title="" />{$lang->toplinks_tickets}</a></li>')."#i",
 		"", 0);
 }
 
@@ -368,41 +368,5 @@ function tickets_lang()
 {
 	global $lang;
 	$lang->load("tickets");
-}
-
-if(!function_exists("is_member")) {
-	function is_member($groups, $user = false)
-	{
-	        global $mybb;
-	
-	        if($user == false)
-	        {
-	                $user = $mybb->user;
-	        }
-	        else if(!is_array($user))
-	        {
-	                // Assume it's a UID
-	                $user = get_user($user);
-	        }
-	
-	        $memberships = array_map('intval', explode(',', $user['additionalgroups']));
-	        $memberships[] = $user['usergroup'];
-	
-	        if(!is_array($groups))
-	        {
-	                if(is_string($groups))
-	                {
-	                        $groups = explode(',', $groups);
-	                }
-	                else
-	                {
-	                        $groups = (array)$groups;
-	                }
-	        }
-	
-	        $groups = array_filter(array_map('intval', $groups));
-	
-	        return array_intersect($groups, $memberships);
-	}
 }
 ?>
