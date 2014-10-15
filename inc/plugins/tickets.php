@@ -15,8 +15,8 @@ function tickets_info()
 		"website"		=> "http://mybbservice.de",
 		"author"		=> "MyBBService",
 		"authorsite"	=> "http://mybbservice.de",
-		"version"		=> "1.0.1",
-		"guid" 			=> "",
+		"version"		=> "1.0.2",
+		"codename"		=> "tickets",
 		"compatibility" => "*",
 		"dlcid"			=> "35"
 	);

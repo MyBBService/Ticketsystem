@@ -24,6 +24,6 @@ $l['ticket_new'] = "New ticket";
 
 $l['tickets_nothing'] = "No tickets to view";
 
-$l['tickets_answer'] = "Replay to ticket";
+$l['tickets_answer'] = "Reply to ticket";
 $l['ticket_close'] = "Close";
 ?>
