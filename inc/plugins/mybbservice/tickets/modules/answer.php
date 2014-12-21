@@ -28,6 +28,14 @@ class Module_Answer extends JB_Module_Base
 			redirect("tickets.php?action=view&view={$ticket->id}");
 
 		$answer->save();
+
+		// Trigger the Alert for the new answer
+		$extra = array(
+			"link" => "tickets.php?action=view&view={$ticket->id}",
+			"lang_data" => $ticket->subject
+		);
+		JB_Alerts::trigger("tickets", "new_answer", $ticket->getRecipients(), $extra);
+
 		redirect("tickets.php?action=view&view={$ticket->id}", $lang->ticket_answered);
 	}
 

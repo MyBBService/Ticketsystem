@@ -26,4 +26,8 @@ $l['tickets_nothing'] = "No tickets to view";
 
 $l['tickets_answer'] = "Reply to ticket";
 $l['ticket_close'] = "Close";
-?>
+
+$l['myalerts_setting_MyBBS_tickets_new_ticket'] = "Receive alert for new tickets?";
+$l['myalerts_setting_MyBBS_tickets_new_answer'] = "Receive alert for new answers on tickets?";
+$l['myalerts_format_tickets_new_ticket'] = "{1} created a new ticket <a href=\"{3}\">{4}</a> ({2})";
+$l['myalerts_format_tickets_new_answer'] = "{1} replied to the ticket <a href=\"{3}\">{4}</a> ({2})";

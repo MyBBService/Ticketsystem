@@ -37,6 +37,16 @@ class MyBBS_Tickets_Ticket extends JB_Classes_Base
 		return parent::getAll($where, $options);
 	}
 
+	public function getRecipients()
+	{
+		$recips = array($this->data['uid']);
+		foreach($this->getAnswers() as $answer)
+		{
+			$recips[] = $answer->uid;
+		}
+		return array_unique($recips);
+	}
+
 	// Functions to interact with our answers
 	public function hasAnswers()
 	{

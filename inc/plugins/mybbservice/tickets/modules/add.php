@@ -16,7 +16,14 @@ class Module_Add extends JB_Module_Base
 		if($ticket->validate())
 		{
 			$ticket->save();
-	
+
+			// Trigger the Alert for the new ticket
+			$extra = array(
+				"link" => "tickets.php?action=view&view={$ticket->id}",
+				"lang_data" => $ticket->subject
+			);
+			JB_Alerts::triggerGroup("tickets", "new_ticket", explode(",", $mybb->settings['tickets_usergroups']), $extra);
+
 			redirect("tickets.php", $lang->ticket_created);
 		}
 		else
