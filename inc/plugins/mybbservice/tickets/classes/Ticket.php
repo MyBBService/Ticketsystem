@@ -1,6 +1,6 @@
 <?php
 
-class MyBBS_Tickets_Ticket extends JB_Classes_Base
+class MyBBS_Tickets_Ticket extends JB_Classes_StorableObject
 {
 	static protected $table = "tickets";
 	static protected $cache = array();
