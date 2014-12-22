@@ -31,3 +31,5 @@ $l['myalerts_setting_MyBBS_tickets_new_ticket'] = "Receive alert for new tickets
 $l['myalerts_setting_MyBBS_tickets_new_answer'] = "Receive alert for new answers on tickets?";
 $l['myalerts_format_tickets_new_ticket'] = "{1} created a new ticket <a href=\"{3}\">{4}</a> ({2})";
 $l['myalerts_format_tickets_new_answer'] = "{1} replied to the ticket <a href=\"{3}\">{4}</a> ({2})";
+
+$l['tickets_wio'] = "Viewing the <a href=\"tickets.php\">Ticketsystem</a>";
