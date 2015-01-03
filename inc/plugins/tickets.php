@@ -40,7 +40,7 @@ function tickets_install()
 	global $lang;
 	$lang->load("tickets");
 
-	jb_install_plugin("tickets");
+	jb_install_plugin("tickets", array("prefix" => "MyBBS", "vendor" => "mybbservice"));
 }
 
 function tickets_is_installed()
