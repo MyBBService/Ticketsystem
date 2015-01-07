@@ -17,4 +17,5 @@ $is_master = is_member($mybb->settings['tickets_usergroups']);
 
 add_breadcrumb($lang->toplinks_tickets, "tickets.php");
 
-(new JB_Modules())->loadModule();
+$m = new JB_Modules();
+$m->loadModule();
