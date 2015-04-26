@@ -4,7 +4,7 @@ class Module_Answer extends JB_Module_Base
 {
 	function post()
 	{
-		global $mybb, $lang, $errors;
+		global $mybb, $lang, $errors, $is_master;
 
 		if(empty($mybb->input['id']))
 			error($lang->no_id);
