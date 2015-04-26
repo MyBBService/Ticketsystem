@@ -23,7 +23,7 @@ function tickets_info()
 		"website"		=> "http://mybbservice.de",
 		"author"		=> "MyBBService",
 		"authorsite"	=> "http://mybbservice.de",
-		"version"		=> "1.1",
+		"version"		=> "1.1.1",
 		"codename"		=> "tickets",
 		"compatibility" => "*",
 		"dlcid"			=> "35"
