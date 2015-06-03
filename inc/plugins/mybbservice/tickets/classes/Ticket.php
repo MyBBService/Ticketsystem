@@ -24,7 +24,7 @@ class MyBBS_Tickets_Ticket extends JB_Classes_StorableObject
 		return true;
 	}
 
-	public static function getAll($where='', $options=array())
+	public static function getAll($where='', array $options=array())
 	{
 		if(!empty($where))
 		    $where .= " AND ";
@@ -32,7 +32,7 @@ class MyBBS_Tickets_Ticket extends JB_Classes_StorableObject
 		return parent::getAll($where, $options);
 	}
 
-	public static function getAllWithClosed($where='', $options=array())
+	public static function getAllWithClosed($where='', array $options=array())
 	{
 		return parent::getAll($where, $options);
 	}
